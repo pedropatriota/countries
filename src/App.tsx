@@ -5,16 +5,16 @@ import { light, dark } from './styles/themes';
 import { Header } from './components';
 
 function App() {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = React.useState(light);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = React.useCallback(() => {   
+    setTheme(theme.title === 'light' ? dark : light);
+  },[theme, setTheme]);
 
   return (
-    <ThemeProvider theme={dark}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle/>
-      <Header theme={theme === 'light' ? 'dark' : 'light'} toggleTheme={toggleTheme} />
+      <Header toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }

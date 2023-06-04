@@ -7,7 +7,8 @@ declare module 'styled-component' {
       bg: string;
       el: string;
       text: string;
-      input?: string;
+      input: string;
+      border: string
     };
   }
 }

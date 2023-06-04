@@ -1,18 +1,26 @@
-import * as Style from './styles'
+import React from 'react';
+import {Moon as MoonOutlined} from '@styled-icons/boxicons-regular/Moon'
+import {Moon} from '@styled-icons/heroicons-solid/Moon'
 
-interface IHeaderProps{
-  theme: 'light' | 'dark';
-  toggleTheme(): void; 
+import * as Style from './styles';
+import { ThemeContext } from 'styled-components';
+
+interface IHeaderProps {
+  toggleTheme(): void;
 }
 
-const Header = ({theme, toggleTheme}: IHeaderProps) => {
+const Header = ({ toggleTheme }: IHeaderProps) => {
+  const { title } = React.useContext(ThemeContext);
 
-  return(
+  return (
     <Style.Container>
       <span>Where is the world?</span>
-      <button onClick={toggleTheme}>{`${theme} mode`}</button>
+      <div>
+      {title === 'light' ? <MoonOutlined/>: <Moon/>}
+      <button onClick={toggleTheme}>{`${title === 'light' ? 'dark' : 'light'} mode`}</button>
+      </div>
     </Style.Container>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
