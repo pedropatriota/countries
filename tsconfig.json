@@ -19,7 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
+  }, 
+  "include": ["src","src/styles/styled.d.ts"],
+  "files": ["src/styles/styled.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
