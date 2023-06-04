@@ -32,4 +32,13 @@ describe('Header Component', () => {
     fireEvent.click(button);
     expect(props.toggleTheme).toHaveBeenCalledTimes(1);    
   });
+
+  it('should match the snapshot', () => {
+    const{container}= render(
+      <ThemeProvider theme={light}>
+        <Header {...props} />
+      </ThemeProvider>
+    )
+      expect(container).toMatchSnapshot()
+  })
 });
