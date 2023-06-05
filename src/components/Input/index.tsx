@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 import { Input as InputEl } from './styles';
 
-interface IFormProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface IFormProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }

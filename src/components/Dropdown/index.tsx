@@ -1,21 +1,28 @@
-import ReactSelect, { GroupBase, SingleValue } from 'react-select';
-import { Container } from './styles';
+import { ActionMeta, GroupBase, SingleValue } from 'react-select';
+import { ReactSelect } from './styles';
 type Filter = SingleValue<{ label: string; value: string }>;
 
-interface IDropdownProps {
-  options: readonly (
-    | { label: string; value: string }
-    | GroupBase<{ label: string; value: string }>
-  )[];
+export interface IDropdownProps {
+  options: readonly (Filter | GroupBase<{ label: string; value: string }>)[];
   filter: Filter;
-  handleFilter: (newValue: SingleValue<Filter>) => void;
+  handleFilter: (
+    newValue: Filter | unknown,
+    actionMeta: ActionMeta<Filter | unknown>
+  ) => void;
 }
 
 const Dropdown = ({ options, handleFilter, filter }: IDropdownProps) => {
   return (
-    <Container>
-      <ReactSelect onChange={handleFilter} value={filter} options={options} />
-    </Container>
+    <ReactSelect
+      classNamePrefix="react-select"
+      options={options}
+      value={filter}
+      onChange={handleFilter}
+      autoFocus={false}
+      isClearable
+      isSearchable
+      placeholder={<span>Filter by region...</span>}
+    />
   );
 };
 

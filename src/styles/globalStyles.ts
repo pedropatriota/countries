@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
 body{
   font-family:'Nunito Sans', sans-serif;
-  font-size: 16px;
+  font-size:16px;
   --webkit-font-smoothing: antialiased;  
   background-color: ${({theme})=> theme.colors.bg};
   color: ${({theme})=> theme.colors.text};

@@ -5,6 +5,6 @@ export default {
     el: '#2b3945',
     text: '#fff',
     input: '#2b3945',
-    border: 'none'
+    border: 'transparent'
   }
 };
