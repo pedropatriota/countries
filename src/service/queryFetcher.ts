@@ -12,6 +12,12 @@ const fetcher: TFetcher = async (url, method = 'GET', body) => {
   return data;
 };
 
+
+
 export function getCountries() {
   return fetcher('https://restcountries.com/v3.1/all');
+}
+
+export function getCountryById(code: string) {
+  return fetcher(`https://restcountries.com/v3.1/alpha/${code}`);
 }

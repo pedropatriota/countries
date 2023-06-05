@@ -25,6 +25,7 @@ export const Container = styled.nav`
       box-shadow: none;
       color: ${({ theme }) => theme.colors.text};
       font-weight: 600;
+      cursor: pointer;
     }
   }
 

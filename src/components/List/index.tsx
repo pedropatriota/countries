@@ -3,6 +3,7 @@ import ListItem from '../ListItem';
 
 interface IListProps {
   data: {
+    id:string;
     name: string;
     capital: string;
     region: string;
@@ -17,9 +18,10 @@ interface IListProps {
 const List = ({ data }: IListProps) => {
   return (
     <Container>
-      {data?.map(({ name, population, region, capital, flag }) => (
+      {data?.map(({id, name, population, region, capital, flag }) => (
         <ListItem
-          key={name}
+          key={id}
+          id={id}
           name={name}
           population={population}
           region={region}
