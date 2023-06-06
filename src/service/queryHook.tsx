@@ -1,6 +1,23 @@
 import { useQuery } from 'react-query';
 import { getCountries, getCountryById } from './queryFetcher';
-import { EnvelopeAt } from 'styled-icons/bootstrap';
+
+interface ICountry {  
+  cca2: string;
+  name: {common:string, nativeName: any};
+    nativeName:string;
+    capital: string;
+    population: number;
+    flags: {
+      svg: string;
+      alt: string;
+    };
+    borders: string[];
+    tld: string;
+    region: string;
+    subregion: string;
+    currencies: string[];
+    languages: string[];
+}
 
 const formatNumber = (number: number) =>
   new Intl.NumberFormat('pt-BR', { maximumSignificantDigits: 3 }).format(
@@ -46,14 +63,14 @@ export const useCountries = (filters: { name: string; region: string }) => {
   };
 };
 
-const formattedDataByCountry = (data: any[]) => {  
+const formattedDataByCountry = (data: ICountry[]) => {  
   const newData = data?.map(
     ({
       cca2,
       name,      
       population,
       capital,
-      border,
+      borders,
       currencies,
       region,
       subregion,
@@ -63,7 +80,7 @@ const formattedDataByCountry = (data: any[]) => {
     }) => {
       const firstLanguage = Object.keys(languages)?.[0];      
       const formattedCurrencies= Object.entries(currencies).map(([_,value])=>{
-        return (value as {name:string})?.name 
+        return (value as {name:string} | any)?.name 
     })
 
       return {
@@ -73,7 +90,7 @@ const formattedDataByCountry = (data: any[]) => {
         capital: capital?.[0],
         population: formatNumber(population),
         flag: { svg: flags.svg, alt: flags.alt },
-        border,
+        borders,
         tld: tld?.[0],
         region,
         subregion,

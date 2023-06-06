@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div`  
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.bg};
   padding: 0 5rem;
 `;
 
-export const ContainerButton = styled.div` 
+export const ContainerButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -28,37 +28,39 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
 
-  svg{
+  svg {
     width: 1rem;
   }
 `;
 
-
-export const ContainerContent= styled.div`
+export const ContainerContent = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap:2rem;
+  flex-wrap:wrap;
 
-  img{
-    width: min(90vw, 35rem );
+  img {
+    width: min(75vw, 35rem);
   }
-`
+`;
 
-export const ContainerList= styled.div`
+export const ContainerList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-`
+`;
 
 export const ContainerTitle = styled.div`
-display: flex;
-align-items: center;
-justify-content: flex-start;
-height: 6.25rem;
-width: 100%;
-font-size: 1.5rem;
-font-weight: 800;
-`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 6.25rem;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem
+`;
 
 export const ContainerContentList = styled.div`
   display: grid;
@@ -66,7 +68,31 @@ export const ContainerContentList = styled.div`
   grid-template-rows: repeat(5, 1fr);
   column-gap: 8rem;
 
-  span + span{
+  @media(max-width:700px){
+    grid-template-columns: 1fr ;
+  grid-template-rows: repeat(8, 1fr);
+  }
+
+  span + span {
     margin-bottom: 1.5rem;
   }
-`
+`;
+
+export const ContainerBorder = styled.div`
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;  
+  display: flex;
+  align-items: center;   
+`;
+
+export const ContainerBorderList = styled.span`
+  padding: 0.625rem 1.25rem;
+  border-radius: 3px;
+  border: ${({ theme }) => theme.colors.border};
+  background-color: ${({ theme }) => theme.colors.el};
+  color: ${({ theme }) => theme.colors.text};
+  margin-left: 0.5rem;
+`;

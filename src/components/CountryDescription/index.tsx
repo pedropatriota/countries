@@ -5,9 +5,12 @@ import {
   ContainerButton,
   ContainerContent,
   ContainerList,
-  ContainerTitle
+  ContainerTitle,
+  ContainerBorder,
+  ContainerBorderList
 } from './styles';
 import { ArrowLeft } from '@styled-icons/fluentui-system-regular/ArrowLeft';
+import { useNavigate } from 'react-router-dom';
 
 interface ICountryDescription {
   name: string;
@@ -18,12 +21,12 @@ interface ICountryDescription {
     svg: string;
     alt: string;
   };
-  border: string[];
+  borders: string[];
   tld: string;
   region: string;
   subregion: string;
   currencies: string[];
-  languages: string[]
+  languages: string[];
 }
 
 const CountryDescription = ({
@@ -32,17 +35,19 @@ const CountryDescription = ({
   capital,
   population,
   flag,
-  border,
+  borders,
   tld,
   region,
   subregion,
   currencies,
   languages
 }: ICountryDescription) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <ContainerButton>
-        <Button>
+        <Button onClick={() => navigate(-1)}>
           <ArrowLeft />
           <span>Back</span>
         </Button>
@@ -50,21 +55,53 @@ const CountryDescription = ({
 
       <ContainerContent>
         <img src={flag?.svg} alt={flag?.alt} />
-        
-        <ContainerList>          
+
+        <ContainerList>
           <ContainerTitle>{name}</ContainerTitle>
-          
+
           <ContainerContentList>
-            <span><strong>Native Name: </strong>{nativeName}</span>
-            <span><strong>Population: </strong>{population}</span>
-            <span><strong>Region: </strong>{region}</span>
-            <span><strong>Sub Region: </strong>{subregion}</span>
-            <span><strong>Capital: </strong>{capital}</span>
-            <span><strong>Top Level Domain: </strong>{tld}</span>
-            <span><strong>Currencies: </strong>{currencies?.map(c=> c)}</span>
-            <span><strong>Languages: </strong>{languages}</span>
+            <span>
+              <strong>Native Name: </strong>
+              {nativeName}
+            </span>
+            <span>
+              <strong>Population: </strong>
+              {population}
+            </span>
+            <span>
+              <strong>Region: </strong>
+              {region}
+            </span>
+            <span>
+              <strong>Sub Region: </strong>
+              {subregion}
+            </span>
+            <span>
+              <strong>Capital: </strong>
+              {capital}
+            </span>
+            <span>
+              <strong>Top Level Domain: </strong>
+              {tld}
+            </span>
+            <span>
+              <strong>Currencies: </strong>
+              {currencies?.map((c) => c)}
+            </span>
+            <span>
+              <strong>Languages: </strong>
+              {languages}
+            </span>
           </ContainerContentList>
-          <div>border</div>
+
+          <ContainerBorder>
+            <span>
+              <strong>Border: </strong>
+              {borders?.map((b) => (
+                <ContainerBorderList key={b}>{b}</ContainerBorderList>
+              ))}
+            </span>
+          </ContainerBorder>
         </ContainerList>
       </ContainerContent>
     </Container>

@@ -9,9 +9,17 @@ export default createGlobalStyle`
 
 body{
   font-family:'Nunito Sans', sans-serif;
-  font-size:16px;
+  font-size: clamp(1em, 1em + 1vw, 16px);
   --webkit-font-smoothing: antialiased;  
   background-color: ${({theme})=> theme.colors.bg};
   color: ${({theme})=> theme.colors.text};
+
+  @media(max-width: 768px){
+    font-size: 14px;
+  }
+
+  @media(max-width: 400px){
+    font-size: 12px;
+  }
 }
 `

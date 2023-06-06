@@ -1,19 +1,19 @@
-import React from 'react'
-import {useParams} from 'react-router-dom'
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCountries, useCountryById } from './../service/queryHook';
 import { light, dark } from './../styles/themes';
 import { SingleValue } from 'react-select';
 
-const useHelper = ()=>{
-  const {id}=useParams<{id:string}>()
-
+const useHelper = () => {
+  const { id } = useParams<{ id: string }>();
+ 
   const [filters, setFilters] = React.useState<{
     name: string;
     region: string;
   }>({ name: '', region: '' });
 
   const { countries, isLoading } = useCountries(filters);
-  const{country} = useCountryById(id as string)
+  const { country } = useCountryById(id as string);
 
   const [theme, setTheme] = React.useState(light);
   const [inputValue, setInputValue] = React.useState('');
@@ -46,15 +46,17 @@ const useHelper = ()=>{
     startTransition(() => setFilters({ ...filters, name: event.target.value }));
   };
 
-  const handleSelect = (
-    newValue: SingleValue<{ label: string; value: string }> | any
-  ) => {
-    setSelect(newValue);
-    startTransition(() =>
-      setFilters({ ...filters, region: newValue?.value as string })
-    );
-  };
-  return{
+  const handleSelect = React.useCallback(
+    (newValue: SingleValue<{ label: string; value: string }> | any) => {
+      setSelect(newValue);
+      startTransition(() =>
+        setFilters({ ...filters, region: newValue?.value as string })
+      );
+    },
+    []
+  );
+
+  return {
     filters,
     countries,
     isLoading,
@@ -66,7 +68,7 @@ const useHelper = ()=>{
     handleChange,
     handleSelect,
     country
-  }
-}
+  };
+};
 
-export default useHelper
+export default useHelper;

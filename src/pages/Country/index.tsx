@@ -3,22 +3,6 @@ import GlobalStyle from '../../styles/globalStyles';
 import { Header, CountryDescription } from '../../components';
 import useHelper from '../useHelper';
 
-interface ICountry {
-  name: string;
-    nativeName:string;
-    capital: string;
-    population: number;
-    flag: {
-      svg: string;
-      alt: string;
-    };
-    border: string[];
-    tld: string;
-    region: string;
-    subregion: string;
-    currencies: string[]
-}
-
 const Country = () => {
   const { isLoading, theme, toggleTheme, country } = useHelper();
 
@@ -28,13 +12,13 @@ const Country = () => {
     capital,
     population,
     flag,
-    border,
+    borders,
     tld,
     region,
     subregion,
     currencies,
     languages
-  } = country;
+  } = country as any;
 
   if (isLoading) return null;
 
@@ -48,7 +32,7 @@ const Country = () => {
         nativeName={nativeName}
         capital={capital}
         population={population}
-        border={border}
+        borders={borders}
         tld={tld}
         region={region}
         subregion={subregion}
